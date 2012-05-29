@@ -65,9 +65,9 @@ function setupStrainGrid(domId, fieldId, fieldName){
         columns: [
             {id:'name',header: 'Name', width: 160, sortable: true, dataIndex: 'name'},
             {id:fieldId,header: fieldName, width: 120, sortable: true, dataIndex: fieldId},
-            {id:'druRepeats',header: 'Dru Repeats', width: 160, sortable: true, dataIndex: 'druRepeats',
+            {id:'druRepeats',header: 'Spa Repeats', width: 160, sortable: true, dataIndex: 'druRepeats',
             editor: new Ext.form.TextField({allowBlank: false})},
-            {id:'druType',header: 'Dru Type', width: 120, sortable: true, dataIndex: 'druType',
+            {id:'druType',header: 'Spa Type', width: 120, sortable: true, dataIndex: 'druType',
             editor: new Ext.form.TextField({allowBlank: false})}
         ],
         autoExpandColumn: 'druRepeats',

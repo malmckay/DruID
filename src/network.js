@@ -13,8 +13,12 @@ function loadNetworkData(url, handler){
 
 
 function setupNetworkData(){
-    loadNetworkData("http://www.dru-typing.org/downloads/drurepeats.txt",completeHandlerNewRepeats);
-    loadNetworkData("http://www.dru-typing.org/downloads/drutypes.txt",completeHandlerNewTypes);
+    tip = {xtype: 'tbtext', text: DruTypes.length + ' Types in the database.'};
+    strainGrid.getTopToolbar().addItem({xtype: 'tbseparator'});
+    strainGrid.getTopToolbar().addItem(tip);
+    tabPanel.doLayout();
+    // loadNetworkData("http://www.dru-typing.org/downloads/drurepeats.txt",completeHandlerNewRepeats);
+    // loadNetworkData("http://www.dru-typing.org/downloads/drutypes.txt",completeHandlerNewTypes);
 }
 
 function completeHandlerNewRepeats(event) { 

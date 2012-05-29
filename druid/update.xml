@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <update xmlns="http://ns.adobe.com/air/framework/update/description/1.0"> 
 <version>0.9.12-beta</version> 
-<url>http://www.mystrains.com/DruID/updates/DruID.0.9.12-beta.air</url> 
-<description>This is the latest version of the DruID application.</description> 
+<url>http://www.mystrains.com/SpaID/updates/SpaID.0.9.12-beta.air</url> 
+<description>This is the latest version of the SpaID application.</description> 
 </update>
