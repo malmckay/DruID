@@ -1,0 +1,30 @@
+body{
+  background-color:#e0e0e0;
+}
+
+
+.x-grid-panel{margin:20px;}
+
+
+.new-tab {
+    background-image:url(../feed-viewer/images/new_tab.gif) !important;
+}
+
+
+.tabs {
+    background-image:url( ../desktop/images/tabs.gif ) !important;
+}
+
+dt{
+  font-size:16px;
+  background-image:url('/icons/fam/book.png');
+  background-repeat:no-repeat;
+  background-position:0px 2px;
+  padding-left:18px;
+}
+dd{
+  font-size:14px;
+  margin:0 0 16px 8px;
+}
+
+dd p{margin-bottom:8px;}

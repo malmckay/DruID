@@ -1,0 +1,15 @@
+
+
+dt{
+  font-size:16px;
+  background-image:url('book.png');
+  background-repeat:no-repeat;
+  background-position:0px 2px;
+  padding-left:18px;
+}
+dd{
+  font-size:14px;
+  margin:0 0 16px 8px;
+}
+
+dd p{margin-bottom:8px;}

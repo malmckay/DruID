@@ -1,0 +1,55 @@
+<html> 
+<head> 
+    <title>DruID</title> 
+    <link rel="stylesheet" type="text/css" href="/ext-3.0-dev/resources/css/ext-all.css" />
+    <link rel="stylesheet" type="text/css" href="DruID.css" />
+    <link rel="stylesheet" type="text/css" href="icons/silk.css" />
+    <script type="text/javascript" src="AIRAliases.js"></script>
+    <script type="text/javascript" src="/ext-3.0-dev/adapter/ext/ext-base.js"></script>
+    <script type="text/javascript" src="/ext-3.0-dev/ext-all.js"></script>
+    <script type="text/javascript" src="/ext-3.0-dev/ext-air.js"></script>
+    <script type="text/javascript" src="/dru-repeats.js"></script>
+    <script type="text/javascript" src="/biojavascript.js"></script>
+    <script type="text/javascript" src="/setup.js"></script>
+    <script type="text/javascript" src="/copy.js"></script>
+    <script type="text/javascript" src="/network.js"></script>
+    <script type="text/javascript" src="/DruID.js"></script>
+	<script src="ApplicationUpdater_UI.swf" type="application/x-shockwave-flash"></script>
+</head> 
+<body id="app-body"> 
+    <div class="list" id="strainList"></div>
+    <div id="exportButton" style="padding:0 10px;float:left;"></div>
+    <div id="clearButton" style="padding:0 10px;float:left;"></div>
+    <div id="s" style="clear:both"></div>
+    <div class="list" id="fileList"></div>
+    <div class="list" id="errorList"></div>
+    <!-- <p>Drop your sequences onto this window</p> -->
+    <div id="helpmenu" class="x-hidden">
+      <dt>Drop your sequence files, folders or text, onto this window.</dt>
+      <dd>Sequence files in fasta format can be dragged individually, in groups or in folders onto this window. The dru repeat profiles will be calculated and appear automatically.</dd>
+      <dt>Reverse Complementing not necessary.</dt>
+      <dd>There is no need to reverse complement your sequence files, DruID will automatically check the reverse complement, and display results if they are found for the reversed complemented sequence.</dd>
+      <dt>DruID searches for dru repeats.</dt>
+      <dd>
+        <p>DruID identifies anchor sequences flanking the dru repeats and then idenitifies each of the repeats in order. The repeat profile is used to identify the dru type (dt).</p>
+        <p>If unknown repeats are listed, a dru type is not identified. In this case, the trace file for that sequence should be sent to the curator for annotation 
+        (<a href="mailto:info@dru-typing.org">info@dru-typing.org</a>). The trace file should also be sent in the case of a new combination of known repeats, as this constitutes a new dru type.</p>
+        <p>DruID also identifies truncated hypervariable regions, which are annotated as dt0.</p>
+      </dd>
+      <dt>Copy and Paste</dt>
+      <dd>Copy and paste is not supported at this time. Please use the "Save Results As..." button to export the results. This will save a file in CSV format, which can be opened in Microsoft Excel.</dd>
+      <dt>Regular Updates</dt>
+	  <dd>This application was last updated on <b>June 1st, 2011</b>. There are currently <b>75 dru repeats</b> and <b>314 dru types</b> in it's local database.</dd>
+      <dt>Contact</dt>
+      <dd>Created by Mal McKay (<a href="mailto:mal.mckay@gmail.com">mal.mckay@gmail.com</a>) and Davida Smyth (<a href="dsmyth@microbio.umsmed.edu">davida.smyth@nyumc.org</a>)</dd>
+      <dt></dt>
+      <dd></dd>
+      <dt></dt>
+      <dd></dd>
+      <dt></dt>
+      <dd></dd>
+      <dt>Feedback</dt>
+      <dd>This application is an ongoing project. Feedback is appreciated.</dd>
+    </div>
+</body> 
+</html>
