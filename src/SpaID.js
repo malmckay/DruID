@@ -1,6 +1,7 @@
 /* /Developer/AdobeAIRSDK/bin/adt -certificate -cn 'DruID' -o 'Mal McKay' -c 'US' 2048-RSA ../cert.p12 */
 /*/Developer/AdobeAIRSDK/bin/adt -package -storetype pkcs12 -keystore ../cert.p12 DruID.air DruID-app.xml .*/
 /*/Developer/AdobeAIRSDK/bin/adt -package -storetype pkcs12 -keystore ../cert.p12 SpaID.air SpaID-app.xml .*/
+/*/Developer/AdobeAIRSDK/bin/adt -package -storetype pkcs12 -keystore ../cert.p12 SpaID.air SpaID-app.xml `git ls-files`*/
 
 Ext.BLANK_IMAGE_URL = '/ext-3.0.0/resources/images/default/s.gif';
 Ext.onReady(appLoad);

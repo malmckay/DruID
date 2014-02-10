@@ -1,6 +1,9 @@
 /*http://www.dru-typing.org/downloads/drurepeats.txt
 http://www.dru-typing.org/downloads/drutypes.txt
 */
+var loadingMessage;
+var loadingSep;
+
 function loadNetworkData(url, handler){
     var loader = new air.URLLoader();
     loader.dataFormat = air.URLLoaderDataFormat.TEXT;
@@ -13,12 +16,15 @@ function loadNetworkData(url, handler){
 
 
 function setupNetworkData(){
-    tip = {xtype: 'tbtext', text: DruTypes.length + ' Types in the database.'};
+    tip = {xtype: 'tbtext', text: 'Loading data...'};
     strainGrid.getTopToolbar().addItem({xtype: 'tbseparator'});
     strainGrid.getTopToolbar().addItem(tip);
+
     tabPanel.doLayout();
-    // loadNetworkData("http://www.dru-typing.org/downloads/drurepeats.txt",completeHandlerNewRepeats);
-    // loadNetworkData("http://www.dru-typing.org/downloads/drutypes.txt",completeHandlerNewTypes);
+    statusText('Loading Repeats')
+    loadNetworkData("http://spa.ridom.de/dynamic/sparepeats.fasta",completeHandlerNewRepeats);
+    statusText('Loading Types')
+    loadNetworkData("http://spa.ridom.de/dynamic/spatypes.txt",completeHandlerNewTypes);
 }
 
 function completeHandlerNewRepeats(event) {
@@ -28,35 +34,39 @@ function completeHandlerNewRepeats(event) {
     newSequences.map(updateDruRepeats)
 	var tip = null;
     if(addedNewRepeats > 0){
-        tip = {xtype: 'tbtext', text: DruRepeats.length + ' Repeats in the database. <i>Added '+addedNewRepeats+' New Repeats from dru-typing.org</i>'};
+        tip = {xtype: 'tbtext', text: DruRepeats.length + ' Repeats in the database. <i>Downloaded '+addedNewRepeats+' Repeats</i>'};
     }else{
         tip = {xtype: 'tbtext', text: DruRepeats.length + ' Repeats in the database. <i>No new Repeats found on dru-typing.org.</i>'};
 	}
     strainGrid.getTopToolbar().addItem({xtype: 'tbseparator'})
     strainGrid.getTopToolbar().addItem(tip)
+    strainGrid.getTopToolbar().remove(loadingMessage);
+    strainGrid.getTopToolbar().remove(loadingSep);
     tabPanel.doLayout()
 }
 
 function completeHandlerNewTypes(event) {
     var loader = event.target;
     var newTypes = loader.data.split(/\r|\n/);
-    newTypes = newTypes.filter(isNotBlank).map(function (s){return s.split(", ")})
+    newTypes = newTypes.filter(isNotBlank).map(function (s){return s.split(",")})
     newTypes.map(updateDruTypes)
 	var tip = null;
     if(addedNewTypes > 0){
-        tip = {xtype: 'tbtext', text: DruTypes.length + ' Types in the database. <i>Added '+addedNewTypes+' New Types from dru-typing.org</i>'};
+        tip = {xtype: 'tbtext', text: DruTypes.length + ' Types in the database. <i>Downloaded '+addedNewTypes+' Types</i>'};
     }else{
         tip = {xtype: 'tbtext', text: DruTypes.length + ' Types in the database. <i>No new Types found on dru-typing.org</i>'};
 	}
+
     strainGrid.getTopToolbar().addItem({xtype: 'tbseparator'});
     strainGrid.getTopToolbar().addItem(tip);
+    statusText('Ready')
     tabPanel.doLayout();
 	reparseDupes();
 }
 
 function updateDruRepeats(packet){
-    if(!has(DruRepeats,"name",packet.name)){
-        DruRepeats.push({name:packet.name,sequence:packet.sequence})
+    if(!has(DruRepeats,"name",packet.name.substring(1,99))){
+        DruRepeats.push({name:packet.name.substring(1,99),sequence:packet.sequence})
         addedNewRepeats++;
     }
 }
@@ -73,3 +83,8 @@ function has(arr, field, value){
         return item[field]==value
     })
 }
+
+function statusText(msg){
+    strainGrid.getTopToolbar().items.itemAt(4).setText(msg)
+}
+

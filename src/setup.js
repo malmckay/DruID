@@ -10,11 +10,10 @@ var errorGrid;
 var strainGrid;
 var fileGrid;
 
-
 function setupDragDrop(){
-  var target = document.getElementById('app-body'); 
-  target.addEventListener("dragenter", function (e){e.preventDefault();}); 
-  target.addEventListener("dragover",  function (e){e.preventDefault();}); 
+  var target = document.getElementById('app-body');
+  target.addEventListener("dragenter", function (e){e.preventDefault();});
+  target.addEventListener("dragover",  function (e){e.preventDefault();});
   target.addEventListener("drop", doDrop);
 }
 
@@ -108,7 +107,7 @@ function reparseDupes(){
  * licensing@extjs.com
  * http://www.extjs.com/license
  */
- 
+
  var tabPanel;
 function setupTabs(){
     // basic tabs 1, built from existing content
