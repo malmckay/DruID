@@ -1,10 +1,11 @@
 /* /Developer/AdobeAIRSDK/bin/adt -certificate -cn 'DruID' -o 'Mal McKay' -c 'US' 2048-RSA ../cert.p12 */
 /*/Developer/AdobeAIRSDK/bin/adt -package -storetype pkcs12 -keystore ../cert.p12 DruID.air DruID-app.xml .*/
+/*/Developer/AdobeAIRSDK/bin/adt -package -storetype pkcs12 -keystore ../cert.p12 SpaID.air SpaID-app.xml .*/
 
 Ext.BLANK_IMAGE_URL = '/ext-3.0.0/resources/images/default/s.gif';
 Ext.onReady(appLoad);
 
-function appLoad(){ 
+function appLoad(){
     setupTabs();
     setupCopy();
     setupDragDrop();
@@ -12,21 +13,21 @@ function appLoad(){
     setupNetworkData();
 	reparseDupes();
 
-	var appUpdater = new runtime.air.update.ApplicationUpdaterUI(); 
-	appUpdater.configurationFile = new air.File("app:/updateConfig.xml"); 
-	appUpdater.initialize();	
-} 
+	var appUpdater = new runtime.air.update.ApplicationUpdaterUI();
+	appUpdater.configurationFile = new air.File("app:/updateConfig.xml");
+	appUpdater.initialize();
+}
 function doDrop(e){
     timer(function (){
         tabPanel.getItem("ResultsPanel").show();
-        
+
         // dataTransfer.dropEffect
-        if((e.dataTransfer.types.toString()).search("application/x-vnd.adobe.air.file-list") > -1){ 
+        if((e.dataTransfer.types.toString()).search("application/x-vnd.adobe.air.file-list") > -1){
             var fileList = e.dataTransfer.getData("application/x-vnd.adobe.air.file-list");
             currentFile = fileList[0];
             fileList.map(parseFile)
         }
-        if((e.dataTransfer.types.toString()).search("text/plain") > -1){ 
+        if((e.dataTransfer.types.toString()).search("text/plain") > -1){
             var text = e.dataTransfer.getData("text/plain");
             extractStrains(text, "Unnamed Sequence")
         }
@@ -105,14 +106,14 @@ function parseStrain(packet){
 
 function parseDruRepeats(packet){
 	var matches  = []
-	DruRepeats.forEach(function (rep){ 
+	DruRepeats.forEach(function (rep){
 		var current_index = packet.sequence.indexOf(rep.sequence);
 		while(current_index >=0 ){
 			matches.push({name:rep.name,sequence:rep.sequence,position:current_index});
 			current_index = packet.sequence.indexOf(rep.sequence, current_index+rep.sequence.length);
 		}
 	});
-	
+
 	if(matches.length > 0){
 		var unknowns = [];
 
@@ -122,7 +123,7 @@ function parseDruRepeats(packet){
 			remove = dupe_arr[1];
 			supersets = matches.filter(function (ele){return ele.name == keep})
 			supersets.forEach(function (superset){
-				matches = matches.filter(function (rep){ 
+				matches = matches.filter(function (rep){
 					if((rep.position < superset.position) || (rep.position > (superset.position+superset.sequence.length))){
 						return true;
 					}
@@ -132,10 +133,10 @@ function parseDruRepeats(packet){
 					return false;
 				});
 			});
-			
+
 		});
 		var sorted_matches = matches.sort(function (repA,repB){return repA.position - repB.position})
-		
+
 		next_start_pos = sorted_matches[0].position
 		sorted_matches.forEach(function (rep){
 			if(rep.position != next_start_pos){
@@ -144,7 +145,7 @@ function parseDruRepeats(packet){
 			}
 			next_start_pos = rep.position + rep.sequence.length
 		})
-		var re_sorted_matches = matches.sort(function (repA,repB){return repA.position - repB.position})		
+		var re_sorted_matches = matches.sort(function (repA,repB){return repA.position - repB.position})
 		var repeats           = re_sorted_matches.map(function (rep){return rep.name})
 		var repeats_type      = repeats.filter(function (txt){return txt.length<=2})
 

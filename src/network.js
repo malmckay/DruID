@@ -2,13 +2,13 @@
 http://www.dru-typing.org/downloads/drutypes.txt
 */
 function loadNetworkData(url, handler){
-    var loader = new air.URLLoader(); 
-    loader.dataFormat = air.URLLoaderDataFormat.TEXT; 
+    var loader = new air.URLLoader();
+    loader.dataFormat = air.URLLoaderDataFormat.TEXT;
     loader.addEventListener(air.Event.COMPLETE, handler);
     try{
         loader.load(new air.URLRequest(url));
     }catch(error) {air.trace("Unable to load URL: " + error); }
-    
+
 }
 
 
@@ -21,7 +21,7 @@ function setupNetworkData(){
     // loadNetworkData("http://www.dru-typing.org/downloads/drutypes.txt",completeHandlerNewTypes);
 }
 
-function completeHandlerNewRepeats(event) { 
+function completeHandlerNewRepeats(event) {
     var loader = event.target;
     var data = loader.data;
     var newSequences = parseFasta(data)
@@ -37,7 +37,7 @@ function completeHandlerNewRepeats(event) {
     tabPanel.doLayout()
 }
 
-function completeHandlerNewTypes(event) { 
+function completeHandlerNewTypes(event) {
     var loader = event.target;
     var newTypes = loader.data.split(/\r|\n/);
     newTypes = newTypes.filter(isNotBlank).map(function (s){return s.split(", ")})
